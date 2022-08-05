@@ -19,9 +19,20 @@ namespace SuperMarket.Domain.Services
 
             var product = new Product() { ProductName = name, Quantity = quantity, Price = price, Description = description, ProductTypeID = productTypeID};
             db.Add(product);
+            
             db.SaveChanges();
 
             return "Producto creado";
+        }
+
+        public static IEnumerable<Product> SelectAllProduct()
+        {
+            var db = new dbsetupContext();
+#pragma warning disable CS8604 // Possible null reference argument.
+            return db.Products.ToList();
+#pragma warning restore CS8604 // Possible null reference argument.
+
+
         }
     }
 }
