@@ -22,9 +22,9 @@ namespace supermarket_backend.Controllers
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Product Get(int id)
         {
-            return "value";
+            return ProductService.SelectProduct(id);
         }
 
         // POST api/<ProductController>

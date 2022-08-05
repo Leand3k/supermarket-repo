@@ -17,10 +17,13 @@ namespace SuperMarket.Domain.Services
         {
             var db = new dbsetupContext();
 
-            var product = new Product() { ProductName = name, Quantity = quantity, Price = price, Description = description, ProductTypeID = productTypeID};
-            db.Add(product);
+            {
+                // Saving products in DB.
+                var product = new Product() { ProductName = name, Quantity = quantity, Price = price, Description = description, ProductTypeID = productTypeID };
+                db.Add(product);
+                db.SaveChanges();
+            }
             
-            db.SaveChanges();
 
             return "Producto creado";
         }
@@ -28,11 +31,16 @@ namespace SuperMarket.Domain.Services
         public static IEnumerable<Product> SelectAllProduct()
         {
             var db = new dbsetupContext();
-#pragma warning disable CS8604 // Possible null reference argument.
+
             return db.Products.ToList();
-#pragma warning restore CS8604 // Possible null reference argument.
 
+        }
 
+        public static Product SelectProduct(int id)
+        {
+            var db = new dbsetupContext();
+
+            return db.Products.FirstOrDefault(x => x.ProductID == id);
         }
     }
 }
