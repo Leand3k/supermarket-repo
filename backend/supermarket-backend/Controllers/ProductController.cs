@@ -39,8 +39,22 @@ namespace supermarket_backend.Controllers
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public JsonResult Update(int id, [FromBody]Product product)
         {
+            if (ModelState.IsValid)
+            {
+                var productExist = ProductService.SelectProduct(id);
+                if(productExist != null)
+                {
+                    ProductService.UpdateProduct(product.ProductTypeID, product.ProductName, product.Quantity, product.Price, product.Description);
+
+                }
+                else
+                {
+                    return new JsonResult("Product does not exists.");
+                }
+            }
+            return new JsonResult("Product updated");
         }
 
         // DELETE api/<ProductController>/5
