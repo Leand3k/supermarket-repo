@@ -45,20 +45,43 @@ namespace SuperMarket.Domain.Services
             return db.Products.FirstOrDefault(x => x.ProductID == id);
         }
 
-        public static string UpdateProduct(int productTypeID, string name, int quantity, double price, string description)
+        // Update product
+        public static async void UpdateProduct(Product product)
         {
             var db = new dbsetupContext();
             
             {
 
                 // Saving products in DB.
-                var product = new Product() { ProductName = name, Quantity = quantity, Price = price, Description = description, ProductTypeID = productTypeID };
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+                var Updatedproduct = await db.Products.FirstOrDefaultAsync(productsearch => productsearch.ProductID == product.ProductID);
+                Updatedproduct.ProductName = product.ProductName;
+                Updatedproduct.Quantity = product.Quantity;
+                Updatedproduct.Price = product.Price;
+                Updatedproduct.Description = product.Description;
+                await db.SaveChangesAsync();
+
+
             }
 
+            
 
-            return "Producto updated";
+
+
+        }
+        
+        // Delete single product
+        public static async void DeleteProduct(int id)
+        {
+            var db = new dbsetupContext();
+
+            var ProductToBeDeleted = new Product()
+            {
+                ProductID = id
+            };
+
+            db.Products.Attach(ProductToBeDeleted);
+            db.Products.Remove(ProductToBeDeleted);
+            await db.SaveChangesAsync();
         }
     }
 }
