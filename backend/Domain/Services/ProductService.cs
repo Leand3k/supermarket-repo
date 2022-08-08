@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using SuperMarket.Domain;
-
+﻿using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using SuperMarket.Infraestructure;
 
 namespace SuperMarket.Domain.Services
 {
@@ -16,31 +9,35 @@ namespace SuperMarket.Domain.Services
         // Create a single product
         public static string CreateProduct(int productTypeID, string name, int quantity, double price, string description)
         {
-            var db = new dbsetupContext();
+            var db = new DbsetupContext();
+
+            ProductValidator validator = new ProductValidator();
 
             {
-                // Saving products in DB.
+                // Saving products in DB
+
                 var product = new Product() { ProductName = name, Quantity = quantity, Price = price, Description = description, ProductTypeID = productTypeID };
                 db.Add(product);
                 db.SaveChanges();
-            }
-            
+                return "Product created.";
 
-            return "Producto creado";
+            }
+
+            
         }
 
         // Select all product
         public static IEnumerable<Product> SelectAllProduct()
         {
-            var db = new dbsetupContext();
+            var db = new DbsetupContext();
 
             return db.Products.ToList();
-
         }
+
         // Select one product by ID
         public static Product SelectProduct(int id)
         {
-            var db = new dbsetupContext();
+            var db = new DbsetupContext();
 
             return db.Products.FirstOrDefault(x => x.ProductID == id);
         }
@@ -48,10 +45,9 @@ namespace SuperMarket.Domain.Services
         // Update product
         public static async void UpdateProduct(Product product)
         {
-            var db = new dbsetupContext();
-            
-            {
+            var db = new DbsetupContext();
 
+            {
                 // Saving products in DB.
                 var Updatedproduct = await db.Products.FirstOrDefaultAsync(productsearch => productsearch.ProductID == product.ProductID);
                 Updatedproduct.ProductName = product.ProductName;
@@ -59,20 +55,13 @@ namespace SuperMarket.Domain.Services
                 Updatedproduct.Price = product.Price;
                 Updatedproduct.Description = product.Description;
                 await db.SaveChangesAsync();
-
-
             }
-
-            
-
-
-
         }
-        
+
         // Delete single product
         public static async void DeleteProduct(int id)
         {
-            var db = new dbsetupContext();
+            var db = new DbsetupContext();
 
             var ProductToBeDeleted = new Product()
             {
