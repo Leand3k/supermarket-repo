@@ -22,9 +22,20 @@ namespace supermarket_backend.Controllers
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
-        public Product Get(int id)
+        public JsonResult Get(int id)
         {
-            return ProductService.SelectProduct(id);
+            var productExist = ProductService.SelectProduct(id);
+            if (ModelState.IsValid && productExist != null)
+            {
+                return new JsonResult(ProductService.SelectProduct(id));
+                
+            }
+            else
+            {
+                return new JsonResult("Product does not exists.");
+            }
+
+
         }
 
         // POST api/<ProductController>
@@ -60,8 +71,21 @@ namespace supermarket_backend.Controllers
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public JsonResult Delete(int id)
         {
+            if (ModelState.IsValid)
+            {
+                var productExist = ProductService.SelectProduct(id);
+                if(productExist != null)
+                {
+                    ProductService.DeleteProduct(id);
+                }
+                else
+                {
+                    return new JsonResult("Product does not exist");
+                }
+            }
+            return new JsonResult($"Product deleted on ID {id}");
         }
     }
 }
