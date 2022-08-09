@@ -12,6 +12,7 @@ namespace supermarket_backend.Controllers
     {
         // GET: api/<ProductController>
         [Route("all")]
+        
         [HttpGet]
         public IEnumerable<Product> Get()
         {
