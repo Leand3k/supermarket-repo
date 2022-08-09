@@ -39,6 +39,10 @@ namespace SuperMarket.Infraestructure
         public ProductValidator()
         {
             RuleFor(product => product.ProductName).NotNull();
+            RuleFor(product => product.Quantity).NotNull().Empty();
+            RuleFor(product => product.Price).NotNull().Empty();
+            RuleFor(product => product.ProductTypeID).NotNull();
+
         }
     }
 }
