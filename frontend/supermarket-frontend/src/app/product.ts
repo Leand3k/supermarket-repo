@@ -1,11 +1,11 @@
 export class Product{
   
-  prod_id!:number;
-  prod_type!: number;
-  prod_name!: string;
-  prod_quantity!: number;
-  prod_price!: number;
-  prod_description!: string;
+  ProductID!:number;
+  ProductTypeID!: number;
+  ProductName!: string;
+  Quantity!: number;
+  Price!: number;
+  Description!: string;
   
 }
 

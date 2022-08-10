@@ -14,11 +14,14 @@ import { ListProductComponent } from './components/list-product/list-product.com
   declarations: [
     AppComponent,
     ListProductComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [RESTService],
   bootstrap: [

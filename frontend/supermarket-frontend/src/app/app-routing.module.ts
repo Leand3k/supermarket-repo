@@ -6,6 +6,10 @@ const routes: Routes = [{
   path: 'app-list-product',
   component: ListProductComponent,
   data:{ title: 'Products'}
+},
+{
+  path:'create',
+  component: AddProductComponent
 }];
 
 @NgModule({

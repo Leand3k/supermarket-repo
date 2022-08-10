@@ -1,26 +1,37 @@
-<!-- <div class="container wrapper wrapper2">
-    <div class="row">
-        <div class="col-md-12">
-            <h3>Create new Product</h3>
-            <form [formGroup]="productForm" (ngSubmit)="submitForm()" novalidate>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" formControlName="prod_name" class="form-control" maxlength="20">
-                </div>
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <input type="number" formControlName="prod_quantity" class="form-control" maxlength="20">
-                </div>
-                <div class="form-group">
-                    <label>Price</label>
-                    <input type="number" formControlName="prod_price" class="form-control" maxlength="20">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" formControlName="prod_description" class="form-control" maxlength="20">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
+<br />
+<div class="container border border-info" width="200px">
+    <h3>Create Product</h3>
+    <div [hidden]="submitted" style="width: 400px;">
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name"> Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="products.ProductName" name="name">
+            </div><br />
+
+            <div class="form-group">
+                <label for="name">Quantity</label>
+                <input type="number" class="form-control" id="Quantity" required [(ngModel)]="products.Quantity" name="email">
+            </div><br />
+
+            <div class="form-group">
+                <label for="name">Price</label>
+                <input type="number" class="form-control" id="Price" required [(ngModel)]="products.Price" name="email">
+            </div><br />
+
+            <div class="form-group">
+                <label for="name">Product Type</label>
+                <input type="number" class="form-control" id="ProductType" required [(ngModel)]="products.ProductTypeID" name="email">
+            </div><br />
+
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
     </div>
-</div> -->
+
+    <div [hidden]="!submitted">
+        <h4>You submitted successfully!</h4>
+
+    </div>
+    <br>
+    <br>
+    <button (click)=" productsList()" class="btn btn-primary">Back to Product List</button><br>
+</div>

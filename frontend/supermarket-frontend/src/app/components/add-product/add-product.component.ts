@@ -11,18 +11,37 @@ import { Product } from 'src/app/product';
 })
 export class AddProductComponent implements OnInit {
 
-  products: Product[] = [];
+  products: Product = new Product()
+  submitted=false;
 
   constructor(
     public rest: RESTService,
     private router: Router){}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
-  add(): void{
-    this.router.navigate(['/product-add'])
+  newProduct(): void{
+    this.products = new Product();
   }
 
+  onSubmit(){
+    this.submitted=true;
+    this.saveProduct();
+  }
+
+  saveProduct(){
+    this.rest.addProduct(this.products)
+      .subscribe(data=>{
+        console.log(data),
+          (        error: any)=>console.log(error)
+      });
+      this.products=new Product();
+      this.productsList();
+  }
+
+  productsList(){
+    this.router.navigate(['app-list-product']);
+  }
 
   
 

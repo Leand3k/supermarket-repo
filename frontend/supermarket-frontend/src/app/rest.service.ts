@@ -22,12 +22,17 @@ export class RESTService {
     return this.httpClient.get<Product>(this.baseurl + '/Product/all')
     .pipe(retry(1), catchError(this.errorHandl))
   }
-  
-  CreateProduct(data: any): Observable<Product>{
-    return this.httpClient.post<Product>(this.baseurl + '/Product/Create',
-      JSON.stringify(data),
-      this.httpOptions).pipe(retry(1), catchError(this.errorHandl));
+
+  public addProduct(product: object): Observable<object>{
+    let bodyString = JSON.stringify(product)
+    return this.httpClient.post(this.baseurl + '/Product/Create', bodyString, { headers: this.httpOptions.headers})
   }
+  
+  // public CreateProduct(data: any): Observable<Product>{
+  //   return this.httpClient.post<Product>(this.baseurl + '/Product/Create',
+  //     JSON.stringify(data),
+  //     this.httpOptions).pipe(retry(1), catchError(this.errorHandl));
+  // }
 
   errorHandl(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
