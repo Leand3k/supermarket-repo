@@ -14,11 +14,6 @@ export class ListProductComponent implements OnInit {
 
   products: any;
   
-  
-  
-
-  
-  
   constructor(private restService: RESTService, private router: Router,){}
 
   ngOnInit(){
@@ -29,15 +24,13 @@ export class ListProductComponent implements OnInit {
     })
   }
 
-  // loadProducts(){
-  //   return this.restService.getProducts().subscribe((data: {})=>{
-  //     this.product = data
-  //     console.log(data)
-  //   })
-  // }
+  deleteProduct(id: number){
+    this.restService.deleteUser(id)
+    .subscribe(data=>{
+      console.log(data);
+      this.ngOnInit();
+    },
+      error=> console.log(error));
+  }
 
-  // productDetails(prod_id: number){
-  //   this.router.navigate(['products', prod_id]);
-  //   console.log(prod_id);
-  // }
 }

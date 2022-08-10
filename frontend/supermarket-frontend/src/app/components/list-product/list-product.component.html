@@ -1,7 +1,21 @@
 <h1>Products</h1>
 <p>hi</p>
-<div *ngFor="let product of products">
+<!-- <div *ngFor="let product of products">
     <h2>{{product.productName}}</h2>
+</div> -->
+
+<div class="card" style="width: 18rem;">
+    <ul class="list-group list-group-flush" *ngFor="let product of products">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <li class="list-group-item" style="text-align: center;">{{product.productName}}
+                
+            </li>
+            <button type="button" class="btn btn-danger me-md-2" (click)="deleteProduct(product.productID)">Delete</button>
+
+        </div>
+      
+      
+    </ul>
 </div>
 
     

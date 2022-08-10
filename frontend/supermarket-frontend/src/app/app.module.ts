@@ -10,6 +10,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,6 @@ import { ListProductComponent } from './components/list-product/list-product.com
   ],
   providers: [RESTService],
   bootstrap: [
-    AppComponent]
+    AppComponent,]
 })
 export class AppModule { }

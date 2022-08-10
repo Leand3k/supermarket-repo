@@ -27,12 +27,10 @@ export class RESTService {
     let bodyString = JSON.stringify(product)
     return this.httpClient.post(this.baseurl + '/Product/Create', bodyString, { headers: this.httpOptions.headers})
   }
-  
-  // public CreateProduct(data: any): Observable<Product>{
-  //   return this.httpClient.post<Product>(this.baseurl + '/Product/Create',
-  //     JSON.stringify(data),
-  //     this.httpOptions).pipe(retry(1), catchError(this.errorHandl));
-  // }
+
+  public deleteUser(id: number): Observable<any>{
+    return this.httpClient.delete(this.baseurl + `/Product/${id}`, {responseType: 'text'}  )
+  }
 
   errorHandl(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
