@@ -40,6 +40,7 @@ namespace SuperMarket.Domain.Services
             var db = new DbsetupContext();
 
             return db.Products.FirstOrDefault(x => x.ProductID == id);
+
         }
 
         // Update product
@@ -49,8 +50,11 @@ namespace SuperMarket.Domain.Services
 
             {
                 // Saving products in DB.
+
                 var Updatedproduct = await db.Products.FirstOrDefaultAsync(productsearch => productsearch.ProductID == product.ProductID);
+
                 Updatedproduct.ProductName = product.ProductName;
+
                 Updatedproduct.Quantity = product.Quantity;
                 Updatedproduct.Price = product.Price;
                 Updatedproduct.Description = product.Description;
@@ -68,7 +72,9 @@ namespace SuperMarket.Domain.Services
                 ProductID = id
             };
 
+
             db.Products.Attach(ProductToBeDeleted);
+
             db.Products.Remove(ProductToBeDeleted);
             await db.SaveChangesAsync();
         }
