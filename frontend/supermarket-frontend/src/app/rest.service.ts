@@ -5,34 +5,51 @@ import { retry, catchError } from 'rxjs/operators';
 import { Product } from './product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RESTService {
-  
-  baseurl = 'https://localhost:7017/api'
-  constructor(private httpClient: HttpClient) { }
+  baseurl = 'https://localhost:7017/api';
+  constructor(private httpClient: HttpClient) {}
 
-  httpOptions={
+  // Include headers to avoid errors with API
+  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-    })
+    }),
+  };
+
+  // Get all products
+  public getProducts(): Observable<any> {
+    return this.httpClient
+      .get<Product>(this.baseurl + '/Product/all')
+      .pipe(retry(3), catchError(this.errorHandl));
   }
 
-  public getProducts(): Observable<any>{
-    return this.httpClient.get<Product>(this.baseurl + '/Product/all')
-    .pipe(retry(1), catchError(this.errorHandl))
+  public getProduct(id: number): Observable<any> {
+    return this.httpClient.get(this.baseurl + `/Product/${id}`);
   }
 
-  public addProduct(product: object): Observable<object>{
-    let bodyString = JSON.stringify(product)
-    return this.httpClient.post(this.baseurl + '/Product/Create', bodyString, { headers: this.httpOptions.headers})
+  // Add product
+  public addProduct(product: object): Observable<object> {
+    let bodyString = JSON.stringify(product);
+    return this.httpClient.post(this.baseurl + '/Product/Create', bodyString, {
+      headers: this.httpOptions.headers,
+    });
   }
 
-  public deleteUser(id: number): Observable<any>{
-    return this.httpClient.delete(this.baseurl + `/Product/${id}`, {responseType: 'text'}  )
+  // Delete single product
+  public deleteProduct(id: number): Observable<any> {
+    return this.httpClient.delete(this.baseurl + `/Product/${id}`, {
+      responseType: 'text',
+    });
   }
 
-  errorHandl(error: { error: { message: string; }; status: any; message: any; }) {
+  // Update Product
+  public updateProduct(id: number, value: any): Observable<any> {
+    return this.httpClient.put(this.baseurl + `/Product/${id}`, value);
+  }
+
+  errorHandl(error: { error: { message: string }; status: any; message: any }) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
@@ -46,6 +63,4 @@ export class RESTService {
       return errorMessage;
     });
   }
-
 }
-

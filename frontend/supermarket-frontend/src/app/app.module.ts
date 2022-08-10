@@ -10,22 +10,21 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     ListProductComponent,
-    AddProductComponent
+    AddProductComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [RESTService],
-  bootstrap: [
-    AppComponent,]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
