@@ -1,8 +1,47 @@
-<h1>Products</h1>
+
+<div class="table--list">
+    
+    <img src="https://www.svgrepo.com/show/333478/add-r.svg" class="img--list" (click)=" addProduct()" type="button"/>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider" *ngFor="let product of products">
+          <tr>
+            <th scope="row">{{product.productID}}</th>
+            <td>{{product.productName}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.type}}</td>
+            <td>
+                <img src="https://www.svgrepo.com/show/162728/delete.svg" class="img--list" (click)="deleteProduct(product.productID)" type="button"/>
+                <img src="https://www.svgrepo.com/show/60515/edit.svg" class="img--list" (click)="editProduct(product.productID)" type="button" />
+            </td>
+          </tr>
+          
+
+        </tbody>
+      </table>
+</div>
+
+
+
+
+
+
+
+
+<!-- <h1>Products</h1>
 <p>hi</p>
-<!-- <div *ngFor="let product of products">
-    <h2>{{product.productName}}</h2>
-</div> -->
 
 <div class="card" style="width: 18rem;">
     <ul class="list-group list-group-flush" *ngFor="let product of products">
@@ -15,6 +54,6 @@
       
         <button type="button" class="btn btn-warning" (click)="editUser(product.productID)">Edit</button>
     </ul>
-</div>
+</div> -->
 
     

@@ -31,8 +31,21 @@ export class ListProductComponent implements OnInit {
     );
   }
 
-  editUser(id: number) {
+  addProduct() {
+    this.router.navigate(['create']);
+  }
+
+  editProduct(id: number) {
     this.router.navigate(['edit', id]);
-    console.log(id)
+    console.log(id);
+  }
+
+  displayStyle = 'none';
+
+  openPopup() {
+    this.displayStyle = 'block';
+  }
+  closePopup() {
+    this.displayStyle = 'none';
   }
 }

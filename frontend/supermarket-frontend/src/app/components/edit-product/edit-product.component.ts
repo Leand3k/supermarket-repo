@@ -49,4 +49,13 @@ export class EditProductComponent implements OnInit {
   productsList() {
     this.router.navigate(['products']);
   }
+
+  displayStyle = 'none';
+
+  openPopup() {
+    this.displayStyle = 'block';
+  }
+  closePopup() {
+    this.displayStyle = 'none';
+  }
 }

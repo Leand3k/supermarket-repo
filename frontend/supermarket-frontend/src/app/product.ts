@@ -1,6 +1,6 @@
 export class Product {
   ProductID!: number;
-  ProductTypeID!: number;
+  Type!: string;
   ProductName!: string;
   Quantity!: number;
   Price!: number;
