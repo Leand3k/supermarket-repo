@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.API", "SuperMarket.API.csproj", "{09B03711-DA2B-4A89-B094-1A901931B5FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.API", "SuperMarket.API.csproj", "{09B03711-DA2B-4A89-B094-1A901931B5FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.Domain", "..\Domain\SuperMarket.Domain.csproj", "{2F6942DD-CE7C-488D-8BA9-E5F47ED9A7D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Domain", "..\Domain\SuperMarket.Domain.csproj", "{2F6942DD-CE7C-488D-8BA9-E5F47ED9A7D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarket.Infraestructure", "..\Infraestructure\SuperMarket.Infraestructure.csproj", "{E6ECD6F1-BE47-4959-8221-29DF10446AF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperMarket.Infraestructure", "..\Infraestructure\SuperMarket.Infraestructure.csproj", "{E6ECD6F1-BE47-4959-8221-29DF10446AF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

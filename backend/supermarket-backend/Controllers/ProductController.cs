@@ -12,7 +12,6 @@ namespace supermarket_backend.Controllers
     {
         // GET: api/<ProductController>
         [Route("all")]
-        
         [HttpGet]
         public IEnumerable<Product> Get()
         {
@@ -43,18 +42,15 @@ namespace supermarket_backend.Controllers
 
             FluentValidation.Results.ValidationResult? result = validator.Validate(product);
 
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 foreach (var failure in result.Errors)
                 {
                     return new JsonResult("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
                 }
             }
-            ProductService.CreateProduct(product.ProductTypeID, product.ProductName, product.Quantity, product.Price, product.Description);
+            ProductService.CreateProduct(product.Type, product.ProductName, product.Quantity, product.Price, product.Description);
             return new JsonResult("Product created");
-
-
-
         }
 
         // PUT api/<ProductController>/5

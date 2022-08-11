@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using FluentValidation;
 using SuperMarket.Infraestructure;
 
 namespace SuperMarket.Domain.Services
@@ -7,7 +6,7 @@ namespace SuperMarket.Domain.Services
     public class ProductService
     {
         // Create a single product
-        public static string CreateProduct(int productTypeID, string name, int quantity, double price, string description)
+        public static string CreateProduct(string type, string name, int quantity, double price, string description)
         {
             var db = new DbsetupContext();
 
@@ -16,14 +15,11 @@ namespace SuperMarket.Domain.Services
             {
                 // Saving products in DB
 
-                var product = new Product() { ProductName = name, Quantity = quantity, Price = price, Description = description, ProductTypeID = productTypeID };
+                var product = new Product() { ProductName = name, Quantity = quantity, Price = price, Description = description, Type = type };
                 db.Add(product);
                 db.SaveChanges();
                 return "Product created.";
-
             }
-
-            
         }
 
         // Select all product
@@ -40,7 +36,6 @@ namespace SuperMarket.Domain.Services
             var db = new DbsetupContext();
 
             return db.Products.FirstOrDefault(x => x.ProductID == id);
-
         }
 
         // Update product
@@ -71,7 +66,6 @@ namespace SuperMarket.Domain.Services
             {
                 ProductID = id
             };
-
 
             db.Products.Attach(ProductToBeDeleted);
 

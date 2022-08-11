@@ -1,12 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using FluentValidation;
+﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 
 namespace SuperMarket.Infraestructure
 {
     public class DbsetupContext : DbContext
     {
         public DbSet<Product>? Products { get; set; }
-        public DbSet<ProductType>? ProductsType { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,12 +22,6 @@ namespace SuperMarket.Infraestructure
         public double Price { get; set; }
         public string? Description { get; set; }
 
-        public int ProductTypeID { get; set; }
-    }
-
-    public class ProductType
-    {
-        public int ProductTypeID { get; set; }
         public string? Type { get; set; }
     }
 
@@ -38,11 +31,9 @@ namespace SuperMarket.Infraestructure
     {
         public ProductValidator()
         {
-            //RuleFor(product => product.ProductName).NotNull();
-            //RuleFor(product => product.Quantity).NotNull().NotEmpty();
-            //RuleFor(product => product.Price).NotNull().NotEmpty();
-            //RuleFor(product => product.ProductTypeID).NotNull();
-
+            RuleFor(product => product.ProductName).NotNull();
+            RuleFor(product => product.Quantity).NotNull().NotEmpty();
+            RuleFor(product => product.Price).NotNull().NotEmpty();
         }
     }
 }
