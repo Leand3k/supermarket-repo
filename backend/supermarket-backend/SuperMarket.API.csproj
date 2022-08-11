@@ -5,6 +5,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>supermarket_backend</RootNamespace>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+    <DockerComposeProjectPath>docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>85880adf-48d7-4d7e-9c00-38da78a1dcf1</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\SuperMarket.Domain.csproj" />
+    <ProjectReference Include="..\Domain\supermarketdomain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

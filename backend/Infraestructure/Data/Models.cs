@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SuperMarket.Infraestructure
 {
+    // Creating tables
+
     public class DbsetupContext : DbContext
     {
         public DbSet<Product>? Products { get; set; }
@@ -12,6 +14,8 @@ namespace SuperMarket.Infraestructure
             optionsBuilder.UseSqlServer("data source=DESKTOP-I6NT15H;initial catalog=Supermarket;trusted_connection=true");
         }
     }
+
+    // Models
 
     public class Product
     {
@@ -31,7 +35,7 @@ namespace SuperMarket.Infraestructure
     {
         public ProductValidator()
         {
-            RuleFor(product => product.ProductName).NotNull();
+            RuleFor(product => product.ProductName).NotNull().NotEmpty();
             RuleFor(product => product.Quantity).NotNull().NotEmpty();
             RuleFor(product => product.Price).NotNull().NotEmpty();
         }

@@ -4,4 +4,8 @@ services:
     container_name: angular-docker-container
     build: ./frontend/supermarket-frontend
     ports:
-      - "9000:80"
+      - "4200:4200"
+      - "49153:49153"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules

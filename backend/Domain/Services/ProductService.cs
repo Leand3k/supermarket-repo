@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SuperMarket.Infraestructure;
 
-namespace SuperMarket.Domain.Services
+namespace supermarketdomain.Services
 {
     public class ProductService
     {
@@ -16,6 +16,7 @@ namespace SuperMarket.Domain.Services
                 // Saving products in DB
 
                 var product = new Product() { ProductName = name, Quantity = quantity, Price = price, Description = description, Type = type };
+
                 db.Add(product);
                 db.SaveChanges();
                 return "Product created.";

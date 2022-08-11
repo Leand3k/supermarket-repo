@@ -1,8 +1,6 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RESTService } from 'src/app/rest.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/product';
 
 @Component({
   selector: 'app-list-product',
@@ -10,6 +8,7 @@ import { Product } from 'src/app/product';
   styleUrls: ['./list-product.component.css'],
 })
 export class ListProductComponent implements OnInit {
+  
   products: any;
 
   constructor(private restService: RESTService, private router: Router) {}
@@ -38,14 +37,5 @@ export class ListProductComponent implements OnInit {
   editProduct(id: number) {
     this.router.navigate(['edit', id]);
     console.log(id);
-  }
-
-  displayStyle = 'none';
-
-  openPopup() {
-    this.displayStyle = 'block';
-  }
-  closePopup() {
-    this.displayStyle = 'none';
   }
 }

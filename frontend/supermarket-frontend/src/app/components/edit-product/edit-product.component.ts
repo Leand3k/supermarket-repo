@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/product';
 import { RESTService } from 'src/app/rest.service';
 import { Router } from '@angular/router';
@@ -48,14 +48,5 @@ export class EditProductComponent implements OnInit {
 
   productsList() {
     this.router.navigate(['products']);
-  }
-
-  displayStyle = 'none';
-
-  openPopup() {
-    this.displayStyle = 'block';
-  }
-  closePopup() {
-    this.displayStyle = 'none';
   }
 }

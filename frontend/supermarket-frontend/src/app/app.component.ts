@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { RESTService } from 'src/app/rest.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -9,6 +9,7 @@ import { Product } from './product';
 })
 export class RESTService {
   baseurl = 'https://localhost:7017/api';
+
   constructor(private httpClient: HttpClient) {}
 
   // Include headers to avoid errors with API
@@ -25,6 +26,7 @@ export class RESTService {
       .pipe(retry(3), catchError(this.errorHandl));
   }
 
+  // Get single product
   public getProduct(id: number): Observable<any> {
     return this.httpClient.get(this.baseurl + `/Product/${id}`);
   }
@@ -49,6 +51,7 @@ export class RESTService {
     return this.httpClient.put(this.baseurl + `/Product/${id}`, value);
   }
 
+  // Error Handling
   errorHandl(error: { error: { message: string }; status: any; message: any }) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

@@ -1,11 +1,6 @@
-import { Component, NgZone, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RESTService } from 'src/app/rest.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import {
-  HttpClient,
-  HttpEventType,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/product';
 
@@ -17,7 +12,6 @@ import { Product } from 'src/app/product';
 export class AddProductComponent implements OnInit {
   products: Product = new Product();
   submitted = false;
-  fileName = '';
 
   baseurl = 'https://localhost:7017/api';
 
@@ -48,21 +42,5 @@ export class AddProductComponent implements OnInit {
 
   productsList() {
     this.router.navigate(['products']);
-  }
-
-  onFileSelected(event: { target: { files: File[] } }) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      formData.append('thumbnail', file);
-
-      const upload$ = this.http.post(this.baseurl, formData);
-
-      upload$.subscribe();
-    }
   }
 }
